@@ -8,29 +8,31 @@ import androidx.lifecycle.ViewModel
 
 class SampleLiveDataViewModel: ViewModel() {
     lateinit var countDownTimer: CountDownTimer
+    val endTImeInMillis = MutableLiveData<Long>()
+    val _seconds = MutableLiveData<Int>()
+    val isTimerFinished = MutableLiveData<Boolean>(false)
 
-    private val _seconds = MutableLiveData<Int>()
-    val isTimerCompleted = MutableLiveData<Boolean>(false)
-    val timer_end_time = MutableLiveData<Long>()
-    fun seconds():LiveData<Int>{
+    fun seconds():MutableLiveData<Int>{
         return _seconds
     }
 
+    fun stopTimer(){
+        countDownTimer.cancel()
+    }
+
     fun startTimer(){
-        countDownTimer = object : CountDownTimer(timer_end_time.value!!, 1000){
+        countDownTimer = object :CountDownTimer(endTImeInMillis.value!!,1000){
             override fun onTick(p0: Long) {
-                val inSeconds = p0 / 1000
-                _seconds.value = inSeconds.toInt()
+                isTimerFinished.value = false
+                val seconds = p0/1000
+                _seconds.value = seconds.toInt()
             }
 
             override fun onFinish() {
-                isTimerCompleted.value = true
+                isTimerFinished.value = true
             }
+
         }
         countDownTimer.start()
-
-    }
-    fun stopTimer(){
-        countDownTimer.cancel()
     }
 }

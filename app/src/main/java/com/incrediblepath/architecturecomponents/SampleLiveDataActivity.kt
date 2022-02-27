@@ -12,28 +12,29 @@ class SampleLiveDataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivitySampleLiveDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val viewmodel = ViewModelProvider(this).get(SampleLiveDataViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(SampleLiveDataViewModel::class.java)
+
         binding.start.setOnClickListener{
-            if(!binding.time.text.isEmpty() && binding.time.text.length>4){
-                viewmodel.timer_end_time.value = binding.time.text.toString().toLong()
-                viewmodel.startTimer()
+            if (!binding.time.text.isEmpty() && binding.time.text.length>=4){
+                viewModel.endTImeInMillis.value = binding.time.text.toString().toLong()
+                viewModel.startTimer()
             }
-
-        }
-        binding.stop.setOnClickListener{
-            viewmodel.stopTimer()
         }
 
-        viewmodel.seconds().observe(this, Observer {
+        viewModel.seconds().observe(this,{
             binding.output.text = it.toString()
         })
 
-        viewmodel.isTimerCompleted.observe(this,{
-            if(it){
-                Toast.makeText(this,"TImer completed",Toast.LENGTH_SHORT).show()
+        viewModel.isTimerFinished.observe(this,{
+            if(it) {
+                Toast.makeText(this, "Finished", Toast.LENGTH_SHORT).show()
             }
         })
 
+        binding.stop.setOnClickListener{
+            viewModel.stopTimer()
+            binding.output.text = "0"
+        }
 
     }
 }
