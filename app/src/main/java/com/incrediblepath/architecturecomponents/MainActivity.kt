@@ -10,8 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //creating viewModel from Viewmodelprovider
-        val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        //creating viewModel from Viewmodelprovider with ViewModel Factory
+        val viewModel = ViewModelProvider(this,ViewModelFactory(10)).get(MainActivityViewModel::class.java)
         //accessing view model parameters
         //view model scope is available across all lifescycle methods
         //view models should not hold references to activities, fragments and any ui components and activity contexts

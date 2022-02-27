@@ -1,13 +1,13 @@
 package com.incrediblepath.architecturecomponents
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
 import androidx.lifecycle.ViewModel
 
-class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
+class MainActivityViewModel(defaultNumber:Int): ViewModel() {
 
-    var number  = 0
+    var number = defaultNumber
     fun incrementNumber(){
         number++
     }
+
 }
