@@ -10,6 +10,9 @@ import com.incrediblepath.architecturecomponents.databinding.ActivitySampleLiveD
 class SampleLiveDataActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //live data ensures UI match state
+        //lifecycle aware
+        //no memory leaks, no crashes
         val binding = ActivitySampleLiveDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val viewModel = ViewModelProvider(this).get(SampleLiveDataViewModel::class.java)
