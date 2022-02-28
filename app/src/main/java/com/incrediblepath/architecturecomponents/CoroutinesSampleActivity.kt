@@ -15,16 +15,25 @@ class CoroutinesSampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityCoroutinesSampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //synchronously running
-        /*task1()
-        task2()*/
+        //synchronously running --> Sequentially running
+        //Asynchronous --> independent to each other
+        //Main IO and defailt
+        //Main --> for UI code or non blocking code that executes fast
+        //IO --> for network and disk operations
+        //Default --> CPU Intensive operations, bigger computations
+        //launch is builder method present inside
+
         task1()
+
+
+
+        //task1()
         //lives in entire Application level even activity or fragment destroyed
         GlobalScope.launch{
-            task2()
+            task3()
         }
 
-        val job = scope.launch {
+        scope.launch {
             Log.e("Scope Context", this.coroutineContext.toString())
             launch {
                 Log.e("Scope Context", this.coroutineContext.toString())
@@ -43,6 +52,9 @@ class CoroutinesSampleActivity : AppCompatActivity() {
     fun task1(){
         print("Hello")
     }
+    suspend fun task3(){
+        print("Hello")
+    }
 
     suspend fun task2(){
         withContext(Dispatchers.IO){
@@ -50,5 +62,9 @@ class CoroutinesSampleActivity : AppCompatActivity() {
             print("World")
         }
 
+    }
+
+    override fun onNavigateUp(): Boolean {
+        return super.onNavigateUp()
     }
 }
