@@ -2,6 +2,7 @@ package com.incrediblepath.architecturecomponents
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import androidx.lifecycle.ViewModelProvider
 import com.incrediblepath.architecturecomponents.databinding.ActivityMainBinding
 

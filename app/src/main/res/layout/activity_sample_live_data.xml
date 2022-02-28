@@ -14,6 +14,7 @@
         android:hint="Enter time in Millis"
         android:minHeight="48dp"
         android:text=""
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

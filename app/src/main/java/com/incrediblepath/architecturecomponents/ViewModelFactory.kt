@@ -4,11 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import java.lang.IllegalArgumentException
 
-class ViewModelFactory(private var defaultNumber:Int):ViewModelProvider.Factory {
+class ViewModelFactory(var defaultNo:Int) :ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MainActivityViewModel::class.java)){
-            return MainActivityViewModel(defaultNumber) as T
+        if(modelClass.isAssignableFrom(MainActivityViewModel::class.java)){
+            return MainActivityViewModel(defaultNo) as T
+        }else{
+            throw IllegalArgumentException("No model class found")
         }
-        throw IllegalArgumentException("view model class not found")
     }
 }
