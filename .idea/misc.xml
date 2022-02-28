@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/layout/activity_coroutines_sample.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29128205128205126" />
         <entry key="app/src/main/res/layout/activity_sample_live_data.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/layout/activity_sample_retrofit.xml" value="0.15364583333333334" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.16458333333333333" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.16458333333333333" />
       </map>
