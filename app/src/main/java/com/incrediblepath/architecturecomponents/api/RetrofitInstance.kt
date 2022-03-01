@@ -1,18 +1,24 @@
 package com.incrediblepath.architecturecomponents.api
 
 import com.incrediblepath.architecturecomponents.utils.NetworkConstants
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
+
+    private val client = OkHttpClient.Builder().apply {
+        addInterceptor(MyInterceptor())
+    }.build()
     private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(NetworkConstants.ROOT_URL)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val api: SampleApi by lazy {
-        retrofit.create(SampleApi::class.java)
+    val myApi:SampleData by lazy{
+        retrofit.create(SampleData::class.java)
     }
 }
