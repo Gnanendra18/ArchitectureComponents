@@ -5,14 +5,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private val retrofit by lazy {
+
+    private val retrofit:Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(NetworkConstants.ROOT_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val api: SampleApi by lazy {
+    val myApi:SampleApi by lazy {
         retrofit.create(SampleApi::class.java)
     }
 }
