@@ -25,4 +25,11 @@ class SampleRetrofitViewModel(private val repo:Repository):ViewModel() {
         }
 
     }
+
+    fun addPost(data:Post){
+        viewModelScope.launch {
+            response.value = repo.addPost(data)
+        }
+
+    }
 }

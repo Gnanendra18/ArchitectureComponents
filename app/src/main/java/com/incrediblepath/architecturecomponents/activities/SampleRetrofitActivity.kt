@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.incrediblepath.architecturecomponents.SampleLiveDataViewModel
 import com.incrediblepath.architecturecomponents.api.RetrofitInstance
 import com.incrediblepath.architecturecomponents.databinding.ActivitySampleRetrofitBinding
+import com.incrediblepath.architecturecomponents.model.Post
 import com.incrediblepath.architecturecomponents.repository.Repository
 import com.incrediblepath.architecturecomponents.viewmodels.MyViewModelFactory
 import com.incrediblepath.architecturecomponents.viewmodels.SampleRetrofitViewModel
@@ -19,8 +20,8 @@ class SampleRetrofitActivity : AppCompatActivity() {
         val factory = MyViewModelFactory(Repository())
         val viewModel = ViewModelProvider(this,factory).get(SampleRetrofitViewModel::class.java)
         binding.getPost.setOnClickListener{
-            val postNo = binding.postNo.text.toString().toInt()
-            viewModel.getPostsOfUser(postNo)
+            //val postNo = binding.postNo.text.toString().toInt()
+            viewModel.addPost(Post(3,999,"Gnanendra","This is sample post"))
         }
         viewModel.listOfPosts.observe(this,{
             if(it.isSuccessful){
@@ -40,6 +41,10 @@ class SampleRetrofitActivity : AppCompatActivity() {
             }
 
 
+        })
+
+        viewModel.response.observe(this,{
+            binding.response.text = it.toString()
         })
     }
 }

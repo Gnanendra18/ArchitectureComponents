@@ -17,5 +17,8 @@ interface SampleApi {
         @Query("userId")userId:Int
     ):Response<List<Post>>
 
+    @POST("posts")
+    suspend fun addPost(@Body data:Post):Post
+
 
 }

@@ -6,6 +6,7 @@ import retrofit2.Response
 
 class Repository {
     suspend fun getOnePost(): Post {
+        //get from localdatabase else
         return RetrofitInstance.myApi.getOnePost()
     }
 
@@ -15,5 +16,9 @@ class Repository {
 
     suspend fun getAllPostsOfUser(userId:Int): Response<List<Post>> {
         return RetrofitInstance.myApi.getPostsOfUser(userId)
+    }
+
+    suspend fun addPost(data:Post): Post {
+        return RetrofitInstance.myApi.addPost(data)
     }
 }
